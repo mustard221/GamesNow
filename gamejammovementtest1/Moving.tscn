@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=5 format=3 uid="uid://bx2jtl4f3npd2"]
 
+[ext_resource type="Script" path="res://Player.gd" id="1_eoixu"]
 [ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://icon.svg" id="1_jw0fu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 15.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(569, 282)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6asq"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(569, 282)
+disable_mode = 1
+script = ExtResource("1_eoixu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("1_jw0fu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(3.88, 4.2)
 shape = SubResource("CapsuleShape2D_451oq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(573, 461)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(28.6389, -1.83892)
+shape = SubResource("RectangleShape2D_e6asq")
+debug_color = Color(0.0686578, 0.595403, 0.714507, 0.42)
