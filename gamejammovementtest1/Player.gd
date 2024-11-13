@@ -7,7 +7,7 @@ enum GRAV_DIR {
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var grav = 1
-
+var is_flipped = false
 var grav_dir = GRAV_DIR.DOWN
 
 func _physics_process(delta: float) -> void:	
@@ -36,6 +36,13 @@ func _physics_process(delta: float) -> void:
 				GRAV_DIR.DOWN:
 					up_direction = Vector2.UP
 			velocity += -up_direction * grav
+	if Input.is_action_just_pressed("SWITCH"):
+		is_flipped = !is_flipped
+		
+		if is_flipped:
+			$Sprite2D.scale.y = -0.2
+		else:
+			$Sprite2D.scale.y = 0.2
 
 	# Handle jump.
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
