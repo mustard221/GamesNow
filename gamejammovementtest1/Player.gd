@@ -11,22 +11,25 @@ var grav = 1
 var grav_dir = GRAV_DIR.DOWN
 
 func _physics_process(delta: float) -> void:	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta*grav
 
+	if Input.is_action_just_pressed("SWITCH"):
+			#Changes Gravity
+			grav = -grav
+			match grav_dir:
+				GRAV_DIR.DOWN:
+					up_direction = Vector2.UP
+			velocity += -up_direction * grav
+
 	# Handle jump.
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	if Input.is_action_just_pressed("SWITCH"):
-		#Changes Gravity
-		grav = -grav
-		match grav_dir:
-			GRAV_DIR.DOWN:
-				up_direction = Vector2.UP
-		velocity += -up_direction * grav
-			
+		
+	elif Input.is_action_just_pressed("JUMP") and is_on_ceiling():
+		velocity.y = JUMP_VELOCITY*grav
 		
 		
 	# Get the input direction and handle the movement/deceleration.
