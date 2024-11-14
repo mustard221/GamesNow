@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape2D_451oq")
 script = ExtResource("6_umr42")
 
 [node name="Timer" type="Timer" parent="Player/Camera2D/Node"]
-wait_time = 3.0
+wait_time = 100.0
 
 [node name="Label" type="Label" parent="Player/Camera2D/Node"]
 offset_left = 314.0

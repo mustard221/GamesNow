@@ -48,6 +48,9 @@ func _physics_process(delta: float) -> void:
 			$Sprite2D.scale.y = -0.2
 		else:
 			$Sprite2D.scale.y = 0.2
+			
+	if position.y > 1000 or position.y <0:
+		get_tree().change_scene_to_file("res://splashscreen.tscn")
 
 	# Handle jump.
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
