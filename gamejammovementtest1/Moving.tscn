@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=11 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_eoixu"]
 [ext_resource type="Texture2D" uid="uid://gdkba5y0ls2i" path="res://alien_testImage.png" id="2_4hq3f"]
 [ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://icon.svg" id="3_l62bw"]
+[ext_resource type="Script" path="res://item.gd" id="4_4ftro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 15.0
@@ -12,6 +13,12 @@ radius = 15.0
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4i8wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idav8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lltr"]
+size = Vector2(1168, 665)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcxss"]
+size = Vector2(131, 129)
 
 [node name="Node2D" type="Node2D"]
 
@@ -58,3 +65,25 @@ modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.157416, 0.139352)
 texture = ExtResource("3_l62bw")
+
+[node name="Area2D" type="Area2D" parent="."]
+gravity_space_override = 2
+gravity_point_unit_distance = 412.09
+gravity = 450.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(574, 322.5)
+shape = SubResource("RectangleShape2D_0lltr")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(810, 270)
+script = ExtResource("4_4ftro")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
+texture = ExtResource("3_l62bw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_vcxss")
+
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]

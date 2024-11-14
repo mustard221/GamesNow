@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 				GRAV_DIR.DOWN:
 					up_direction = Vector2.UP
 			velocity += -up_direction * grav
+			
 	if Input.is_action_just_pressed("SWITCH"):
 		is_flipped = !is_flipped
 		
