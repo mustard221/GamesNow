@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="GameJamMovementTest1"
-run/main_scene="res://Moving.tscn"
+run/main_scene="res://splashscreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/icon.svg"
 
 [input]
 
