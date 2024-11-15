@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_eoixu"]
-[ext_resource type="Texture2D" uid="uid://gdkba5y0ls2i" path="res://alien_testImage.png" id="2_4hq3f"]
-[ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://icon.svg" id="3_l62bw"]
+[ext_resource type="Texture2D" uid="uid://gdkba5y0ls2i" path="res://Sprites/alien_testImage.png" id="2_4hq3f"]
+[ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://Sprites/icon.svg" id="3_l62bw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 15.0
