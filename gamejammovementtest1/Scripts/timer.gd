@@ -1,7 +1,8 @@
 extends Node
 
-@onready var label = $Label
+@onready var label = $timer
 @onready var timer = $Timer
+
 
 func _ready():
 	timer.start()
@@ -17,3 +18,5 @@ func _process(delta):
 	
 	if label.text == "00:00":
 		get_tree().change_scene_to_file("res://splashscreen.tscn")
+		
+	

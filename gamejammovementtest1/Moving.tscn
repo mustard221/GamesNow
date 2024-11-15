@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://Sprites/icon.svg" id="3_l62bw"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="4_4ftro"]
 [ext_resource type="Texture2D" uid="uid://yfs1iexy1xss" path="res://Jump/Jump1.png" id="4_asp0e"]
+[ext_resource type="Script" path="res://collect.gd" id="4_lbnv7"]
 [ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://Sprites/spaceship.png" id="5_7ft63"]
 [ext_resource type="Texture2D" uid="uid://c1bayyewxp1di" path="res://Jump/Jump2.png" id="5_wv05u"]
 [ext_resource type="Texture2D" uid="uid://bucp0gtiyw2mk" path="res://Jump/Jump3.png" id="6_sr2nq"]
@@ -34,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://bhvb2uotcdsmv" path="res://Walk/Alien Walk15.png" id="29_isj64"]
 [ext_resource type="Texture2D" uid="uid://dx5nn1rka2tom" path="res://Walk/Alien Walk16.png" id="30_uhftj"]
 [ext_resource type="Texture2D" uid="uid://duv230yrdsy8d" path="res://Walk/Alien Walk17.png" id="31_sfu3y"]
-[ext_resource type="Script" path="res://SpaceShip.gd" id="35_c83ap"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 5.34188
@@ -382,12 +382,21 @@ script = ExtResource("6_umr42")
 [node name="Timer" type="Timer" parent="Player/Camera2D/HUD"]
 wait_time = 100.0
 
-[node name="Label" type="Label" parent="Player/Camera2D/HUD"]
-offset_left = 15.0
-offset_top = 30.0
-offset_right = 55.0
-offset_bottom = 53.0
+[node name="timer" type="Label" parent="Player/Camera2D/HUD"]
+offset_left = 522.0
+offset_top = 28.0
+offset_right = 599.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 35
+text = "time
+"
 metadata/_edit_use_anchors_ = true
+
+[node name="collect" type="Label" parent="Player/Camera2D/HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "parts: 0"
+script = ExtResource("4_lbnv7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, 30)
@@ -418,7 +427,7 @@ texture = ExtResource("3_l62bw")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 material = SubResource("CanvasItemMaterial_88i0u")
-position = Vector2(656, 160)
+position = Vector2(656, 172)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 material = SubResource("CanvasItemMaterial_4i8wt")
@@ -467,22 +476,7 @@ texture = ExtResource("5_7ft63")
 position = Vector2(-129.75, -145.25)
 shape = SubResource("RectangleShape2D_akqks")
 
-[node name="Spaceship" type="Area2D" parent="."]
-position = Vector2(28, 604)
-script = ExtResource("35_c83ap")
-
-[node name="Sprite2D" type="Sprite2D" parent="Spaceship"]
-position = Vector2(-129.75, -142.75)
-scale = Vector2(0.352868, 0.325059)
-texture = ExtResource("5_7ft63")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
-position = Vector2(-129.75, -145.25)
-shape = SubResource("RectangleShape2D_akqks")
-
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]
 [connection signal="body_entered" from="item1" to="item1" method="_on_body_entered"]
 [connection signal="body_entered" from="item2" to="Player" method="_on_item_2_body_entered"]
 [connection signal="body_entered" from="item2" to="item2" method="_on_body_entered"]
-[connection signal="body_entered" from="Spaceship" to="Player" method="_on_item_2_body_entered"]
-[connection signal="body_entered" from="Spaceship" to="Spaceship" method="_on_body_entered"]

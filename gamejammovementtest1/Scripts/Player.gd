@@ -70,12 +70,8 @@ func _physics_process(delta: float) -> void:
 	if velocity.y < 0:
 		anim.play("Jump")
 		
-	
-
-		
 	move_and_slide()
 		
-
 
 func _on_item_2_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
