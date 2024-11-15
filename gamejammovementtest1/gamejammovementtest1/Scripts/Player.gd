@@ -14,6 +14,7 @@ var is_flipped = false
 var grav_dir = GRAV_DIR.DOWN
 var collect = 0
 
+@onready var part_label = %collect
 
 
 func _physics_process(delta: float) -> void:	
@@ -76,8 +77,9 @@ func _physics_process(delta: float) -> void:
 func _on_item_2_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
-
+	part_label.text = "Parts Collected: " + str(collect)
 
 func _on_item_1_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
+	part_label.text = "Parts Collected: " + str(collect)

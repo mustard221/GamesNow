@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://Sprites/icon.svg" id="3_l62bw"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="4_4ftro"]
 [ext_resource type="Texture2D" uid="uid://yfs1iexy1xss" path="res://Jump/Jump1.png" id="4_asp0e"]
-[ext_resource type="Script" path="res://Scripts/collect.gd" id="4_lbnv7"]
 [ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://Sprites/spaceship.png" id="5_7ft63"]
 [ext_resource type="Texture2D" uid="uid://c1bayyewxp1di" path="res://Jump/Jump2.png" id="5_wv05u"]
 [ext_resource type="Texture2D" uid="uid://bucp0gtiyw2mk" path="res://Jump/Jump3.png" id="6_sr2nq"]
@@ -39,6 +38,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 5.34188
 height = 10.6838
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdke3"]
+font_size = 35
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mk0al"]
 animations = [{
@@ -358,6 +360,7 @@ size = Vector2(131, 129)
 size = Vector2(153.5, 143.5)
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(50, -36)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(168, 506)
@@ -383,20 +386,25 @@ script = ExtResource("6_umr42")
 wait_time = 100.0
 
 [node name="timer" type="Label" parent="Player/Camera2D/HUD"]
-offset_left = 522.0
-offset_top = 28.0
-offset_right = 599.0
-offset_bottom = 77.0
+offset_left = 922.0
+offset_top = 33.0
+offset_right = 999.0
+offset_bottom = 82.0
 theme_override_font_sizes/font_size = 35
 text = "time
 "
 metadata/_edit_use_anchors_ = true
 
 [node name="collect" type="Label" parent="Player/Camera2D/HUD"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "parts: 0"
-script = ExtResource("4_lbnv7")
+unique_name_in_owner = true
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 50
+text = "Parts Collected: 0"
+label_settings = SubResource("LabelSettings_hdke3")
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, 30)
@@ -450,7 +458,7 @@ gravity = 450.0
 position = Vector2(428.5, 322.5)
 shape = SubResource("RectangleShape2D_0lltr")
 
-[node name="item1" type="Area2D" parent="."]
+[node name="item1" type="Area2D" parent="." groups=["parts"]]
 position = Vector2(810, 270)
 script = ExtResource("4_4ftro")
 
