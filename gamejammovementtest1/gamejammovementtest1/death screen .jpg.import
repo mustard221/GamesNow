@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gdkba5y0ls2i"
-path="res://.godot/imported/alien_testImage.png-c1a8db8d55df6fcf0530d8b7b4602164.ctex"
+uid="uid://cd24ycljgk2cd"
+path="res://.godot/imported/death screen .jpg-4cb8bc441567c85f8ba8add56fbe832f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://alien_testImage.png"
-dest_files=["res://.godot/imported/alien_testImage.png-c1a8db8d55df6fcf0530d8b7b4602164.ctex"]
+source_file="res://death screen .jpg"
+dest_files=["res://.godot/imported/death screen .jpg-4cb8bc441567c85f8ba8add56fbe832f.ctex"]
 
 [params]
 

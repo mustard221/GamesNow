@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 enum GRAV_DIR {
 	DOWN,
 }
@@ -11,6 +12,9 @@ const JUMP_VELOCITY = -400.0
 var grav = 1
 var is_flipped = false
 var grav_dir = GRAV_DIR.DOWN
+var collect = 0
+
+
 
 func _physics_process(delta: float) -> void:	
 	
@@ -25,9 +29,9 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		if direction > 0:
 			print(velocity.y)
-			$Player/AnimatedSprite2D.scale.x = 0.2
+			$AnimatedSprite2D.scale.x = 0.2
 		else:
-			$Player/AnimatedSprite2D.scale.x = -0.2
+			$AnimatedSprite2D.scale.x = -0.2
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
 			anim.play("Walk")
@@ -35,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		anim.play("Idle")
 	if velocity.y > 0:
-		anim.play("Fall")
+		anim.play("Fall") 
 
 	if Input.is_action_just_pressed("SWITCH"):
 			#Changes Gravity
@@ -49,12 +53,12 @@ func _physics_process(delta: float) -> void:
 		is_flipped = !is_flipped
 		
 		if is_flipped:
-			$Player/AnimatedSprite2D.scale.y = -0.2
+			$AnimatedSprite2D.scale.y = -0.2
 		else:
-			$Player/AnimatedSprite2D.scale.y = 0.2
+			$AnimatedSprite2D.scale.y = 0.2
 			
-	if position.y > 900 or position.y < 0:
-		get_tree().change_scene_to_file("res://main.tscn")
+	if position.y > 1000 or position.y <0:
+		get_tree().change_scene_to_file("res://death.tscn")
 
 	# Handle jump.
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
@@ -66,5 +70,14 @@ func _physics_process(delta: float) -> void:
 	if velocity.y < 0:
 		anim.play("Jump")
 		
-		
 	move_and_slide()
+		
+
+func _on_item_2_body_entered(body: Node2D) -> void:
+	collect = collect + 1 
+	print(collect)
+
+
+func _on_item_1_body_entered(body: Node2D) -> void:
+	collect = collect + 1 
+	print(collect)
