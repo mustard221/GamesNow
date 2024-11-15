@@ -6,7 +6,7 @@ enum GRAV_DIR {
 }
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -350.0
 var grav = 1
 var is_flipped = false
 var grav_dir = GRAV_DIR.DOWN
@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta*grav
+		velocity += get_gravity() * delta * grav
 		
 		
 	# Get the input direction and handle the movement/deceleration.
