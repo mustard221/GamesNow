@@ -5,8 +5,10 @@ enum GRAV_DIR {
 	DOWN,
 }
 
+@onready var anim = get_node("AnimationPlayer")
+
 const SPEED = 300.0
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -400.0
 var grav = 1
 var is_flipped = false
 var grav_dir = GRAV_DIR.DOWN
@@ -18,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta * grav
+		velocity += get_gravity() * delta*grav
 		
 		
 	# Get the input direction and handle the movement/deceleration.
@@ -26,12 +28,18 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_axis("LEFT", "RIGHT")
 	if direction:
 		if direction > 0:
-			$Sprite2D.scale.x = 0.2
+			print(velocity.y)
+			$AnimatedSprite2D.scale.x = 0.2
 		else:
-			$Sprite2D.scale.x = -0.2
+			$AnimatedSprite2D.scale.x = -0.2
 		velocity.x = direction * SPEED
+		if velocity.y == 0:
+			anim.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		anim.play("Idle")
+	if velocity.y > 0:
+		anim.play("Fall") 
 
 	if Input.is_action_just_pressed("SWITCH"):
 			#Changes Gravity
@@ -45,11 +53,11 @@ func _physics_process(delta: float) -> void:
 		is_flipped = !is_flipped
 		
 		if is_flipped:
-			$Sprite2D.scale.y = -0.2
+			$AnimatedSprite2D.scale.y = -0.2
 		else:
-			$Sprite2D.scale.y = 0.2
+			$AnimatedSprite2D.scale.y = 0.2
 			
-	if position.y > 900 or position.y < 0:
+	if position.y > 1000 or position.y <0:
 		get_tree().change_scene_to_file("res://splashscreen.tscn")
 
 	# Handle jump.
@@ -58,6 +66,9 @@ func _physics_process(delta: float) -> void:
 		
 	elif Input.is_action_just_pressed("JUMP") and is_on_ceiling():
 		velocity.y = JUMP_VELOCITY*grav
+		
+	if velocity.y < 0:
+		anim.play("Jump")
 		
 	
 
