@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxd3rv2wsa30i"]
+
+[ext_resource type="Script" path="res://buttons_splash.gd" id="1_0aub3"]
+[ext_resource type="Texture2D" uid="uid://bnw7iyydgia3y" path="res://title background copy.jpg" id="1_3i858"]
+[ext_resource type="Texture2D" uid="uid://c4ghnn0iocnud" path="res://start_button.png" id="3_xlwoa"]
+[ext_resource type="Texture2D" uid="uid://dnha55vsdrk4x" path="res://quit_button.png" id="4_0jq2s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6b5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbjqv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1162.0
+offset_bottom = 656.0
+texture = ExtResource("1_3i858")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_0aub3")
+
+[node name="play" type="Button" parent="Node2D"]
+light_mask = 0
+offset_left = 733.0
+offset_top = 563.0
+offset_right = 1218.0
+offset_bottom = 717.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6b5b")
+action_mode = 0
+icon = ExtResource("3_xlwoa")
+
+[node name="quit" type="Button" parent="Node2D"]
+offset_left = 873.0
+offset_top = 689.0
+offset_right = 1074.0
+offset_bottom = 797.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qbjqv")
+icon = ExtResource("4_0jq2s")
+
+[connection signal="pressed" from="Node2D/play" to="Node2D" method="_on_play_pressed"]
+[connection signal="pressed" from="Node2D/quit" to="Node2D" method="_on_quit_pressed"]
