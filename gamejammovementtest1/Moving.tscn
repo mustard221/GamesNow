@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/item.gd" id="4_4ftro"]
 [ext_resource type="Texture2D" uid="uid://yfs1iexy1xss" path="res://Jump/Jump1.png" id="4_asp0e"]
 [ext_resource type="Script" path="res://CameraScript.gd" id="4_yvm62"]
-[ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://Sprites/spaceship.png" id="5_7ft63"]
+[ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://spaceship.png" id="5_7ft63"]
 [ext_resource type="Texture2D" uid="uid://c1bayyewxp1di" path="res://Jump/Jump2.png" id="5_wv05u"]
 [ext_resource type="Texture2D" uid="uid://bucp0gtiyw2mk" path="res://Jump/Jump3.png" id="6_sr2nq"]
 [ext_resource type="Script" path="res://Scripts/timer.gd" id="6_umr42"]

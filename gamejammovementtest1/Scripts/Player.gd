@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.scale.y = 0.2
 			
-	if position.y > 1000 or position.y < 0:
+	if position.y > 1000 or position.y < -100:
 		get_tree().change_scene_to_file("res://death.tscn")
 
 	# Handle jump.
