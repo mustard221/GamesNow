@@ -1,10 +1,11 @@
-[gd_scene load_steps=52 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=53 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
 [ext_resource type="Texture2D" uid="uid://dq1rvhf11lls0" path="res://Background/level2.jpg" id="2_c3ph7"]
 [ext_resource type="Texture2D" uid="uid://dgm188857jj4e" path="res://Alien Turn1.png" id="2_x28r7"]
 [ext_resource type="Texture2D" uid="uid://0hqe6neeach4" path="res://Background/level3.jpg" id="3_rgmn0"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="4_4ftro"]
+[ext_resource type="Texture2D" uid="uid://g4wp1hm5tjcy" path="res://Background/level4.jpg" id="4_26dsl"]
 [ext_resource type="Texture2D" uid="uid://yfs1iexy1xss" path="res://Jump/Jump1.png" id="4_asp0e"]
 [ext_resource type="Script" path="res://CameraScript.gd" id="4_yvm62"]
 [ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://spaceship.png" id="5_7ft63"]
@@ -386,6 +387,13 @@ offset_right = 16359.0
 offset_bottom = 914.0
 texture = ExtResource("3_rgmn0")
 
+[node name="Level4" type="TextureRect" parent="."]
+offset_left = 16341.0
+offset_top = -165.0
+offset_right = 22101.0
+offset_bottom = 915.0
+texture = ExtResource("4_26dsl")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(419, 398)
 zoom = Vector2(0.97, 0.97)
@@ -517,6 +525,8 @@ position = Vector2(1953, -79)
 scale = Vector2(22.76, 5.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision5"]
+position = Vector2(0, -1.89655)
+scale = Vector2(1, 1.16552)
 shape = SubResource("RectangleShape2D_yl2l3")
 
 [node name="Ground_Collision6" type="StaticBody2D" parent="."]
@@ -728,6 +738,7 @@ scale = Vector2(2.61829, -1.06203)
 shape = SubResource("RectangleShape2D_a326d")
 
 [node name="Ground_Collision30" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(16455, 640)
 scale = Vector2(11.76, 5.8)
 
@@ -743,6 +754,69 @@ scale = Vector2(11.76, 5.8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision31"]
 position = Vector2(0.425155, -2.58621)
 scale = Vector2(0.999245, -1.06203)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision32" type="StaticBody2D" parent="."]
+position = Vector2(16345, 642)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision32"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.73393, -1.06203)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision33" type="StaticBody2D" parent="."]
+position = Vector2(16835, 564)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision33"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.01625, -1.31031)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision34" type="StaticBody2D" parent="."]
+position = Vector2(17383, 475)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision34"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.23053, -1.31031)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision35" type="StaticBody2D" parent="."]
+position = Vector2(17908, 385)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision35"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(0.961823, -1.16548)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision36" type="StaticBody2D" parent="."]
+position = Vector2(18560, 285)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision36"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.79856, -1.02065)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision37" type="StaticBody2D" parent="."]
+position = Vector2(19216, -173)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision37"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.79856, -1.02065)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision38" type="StaticBody2D" parent="."]
+position = Vector2(20287, 669)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision38"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(1.23733, -1.37927)
 shape = SubResource("RectangleShape2D_a326d")
 
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]
