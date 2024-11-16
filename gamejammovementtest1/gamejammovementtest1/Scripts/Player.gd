@@ -19,6 +19,9 @@ var collect = 0
 
 func _physics_process(delta: float) -> void:	
 	
+	if is_on_ceiling():
+		velocity -= get_gravity() * delta*grav
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta*grav
@@ -30,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		if direction > 0:
 			print(velocity.y)
+			#print(velocity.x)
 			$AnimatedSprite2D.scale.x = 0.2
 		else:
 			$AnimatedSprite2D.scale.x = -0.2
@@ -58,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.scale.y = 0.2
 			
-	if position.y > 1000 or position.y <0:
+	if position.y > 1000 or position.y < 0:
 		get_tree().change_scene_to_file("res://death.tscn")
 
 	# Handle jump.

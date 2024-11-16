@@ -1,10 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=49 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
 [ext_resource type="Texture2D" uid="uid://dgm188857jj4e" path="res://Alien Turn1.png" id="2_x28r7"]
-[ext_resource type="Texture2D" uid="uid://deyo0lkjg22yg" path="res://Sprites/icon.svg" id="3_l62bw"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="4_4ftro"]
 [ext_resource type="Texture2D" uid="uid://yfs1iexy1xss" path="res://Jump/Jump1.png" id="4_asp0e"]
+[ext_resource type="Script" path="res://CameraScript.gd" id="4_yvm62"]
 [ext_resource type="Texture2D" uid="uid://1nr1y3hqi5ib" path="res://Sprites/spaceship.png" id="5_7ft63"]
 [ext_resource type="Texture2D" uid="uid://c1bayyewxp1di" path="res://Jump/Jump2.png" id="5_wv05u"]
 [ext_resource type="Texture2D" uid="uid://bucp0gtiyw2mk" path="res://Jump/Jump3.png" id="6_sr2nq"]
@@ -34,13 +34,14 @@
 [ext_resource type="Texture2D" uid="uid://bhvb2uotcdsmv" path="res://Walk/Alien Walk15.png" id="29_isj64"]
 [ext_resource type="Texture2D" uid="uid://dx5nn1rka2tom" path="res://Walk/Alien Walk16.png" id="30_uhftj"]
 [ext_resource type="Texture2D" uid="uid://duv230yrdsy8d" path="res://Walk/Alien Walk17.png" id="31_sfu3y"]
+[ext_resource type="Texture2D" uid="uid://beq8jgusjh3x3" path="res://Background/level 1 (1).jpg" id="35_tdrg3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdke3"]
+font_size = 35
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 5.34188
 height = 10.6838
-
-[sub_resource type="LabelSettings" id="LabelSettings_hdke3"]
-font_size = 35
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mk0al"]
 animations = [{
@@ -344,26 +345,64 @@ _data = {
 "Walk": SubResource("Animation_kj342")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_88i0u"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4i8wt"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_idav8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lltr"]
-size = Vector2(1459, 665)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcxss"]
 size = Vector2(131, 129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akqks"]
 size = Vector2(153.5, 143.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lltr"]
+size = Vector2(5780.5, 1081.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl2l3"]
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(50, -36)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -904.0
+offset_top = -163.0
+offset_right = 4856.0
+offset_bottom = 917.0
+texture = ExtResource("35_tdrg3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(419, 398)
+zoom = Vector2(0.97, 0.97)
+script = ExtResource("4_yvm62")
+player = NodePath("../Player")
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+script = ExtResource("6_umr42")
+
+[node name="Timer" type="Timer" parent="Camera2D/HUD"]
+wait_time = 100.0
+
+[node name="timer" type="Label" parent="Camera2D/HUD"]
+offset_left = 922.0
+offset_top = 33.0
+offset_right = 999.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 35
+text = "time
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="collect" type="Label" parent="Camera2D/HUD"]
+unique_name_in_owner = true
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 305.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 50
+text = "Parts Collected: 0"
+label_settings = SubResource("LabelSettings_hdke3")
+metadata/_edit_use_anchors_ = true
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(168, 506)
+position = Vector2(-427, 688)
+scale = Vector2(2, 2)
 disable_mode = 1
 script = ExtResource("1_eoixu")
 
@@ -377,35 +416,6 @@ position = Vector2(-2, -3)
 scale = Vector2(3.88, 4.68)
 shape = SubResource("CapsuleShape2D_451oq")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="HUD" type="CanvasLayer" parent="Player/Camera2D"]
-script = ExtResource("6_umr42")
-
-[node name="Timer" type="Timer" parent="Player/Camera2D/HUD"]
-wait_time = 100.0
-
-[node name="timer" type="Label" parent="Player/Camera2D/HUD"]
-offset_left = 922.0
-offset_top = 33.0
-offset_right = 999.0
-offset_bottom = 82.0
-theme_override_font_sizes/font_size = 35
-text = "time
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="collect" type="Label" parent="Player/Camera2D/HUD"]
-unique_name_in_owner = true
-offset_left = 13.0
-offset_top = 16.0
-offset_right = 305.0
-offset_bottom = 65.0
-theme_override_font_sizes/font_size = 50
-text = "Parts Collected: 0"
-label_settings = SubResource("LabelSettings_hdke3")
-metadata/_edit_use_anchors_ = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, 30)
 scale = Vector2(0.2, 0.2)
@@ -418,71 +428,112 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-material = SubResource("CanvasItemMaterial_88i0u")
-position = Vector2(345, 550)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-material = SubResource("CanvasItemMaterial_4i8wt")
-scale = Vector2(63.1989, -1.83892)
-shape = SubResource("RectangleShape2D_idav8")
-debug_color = Color(0.0686578, 0.595403, 0.714507, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.157416, 0.139352)
-texture = ExtResource("3_l62bw")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-material = SubResource("CanvasItemMaterial_88i0u")
-position = Vector2(656, 172)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-material = SubResource("CanvasItemMaterial_4i8wt")
-scale = Vector2(28.6389, -1.83892)
-shape = SubResource("RectangleShape2D_idav8")
-debug_color = Color(0.0686578, 0.595403, 0.714507, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/CollisionShape2D"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.157416, 0.139352)
-texture = ExtResource("3_l62bw")
-
-[node name="Area2D" type="Area2D" parent="."]
-gravity_space_override = 2
-gravity_point_unit_distance = 412.09
-gravity = 450.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(428.5, 322.5)
-shape = SubResource("RectangleShape2D_0lltr")
-
 [node name="item1" type="Area2D" parent="." groups=["parts"]]
-position = Vector2(810, 270)
+position = Vector2(4744, 347)
 script = ExtResource("4_4ftro")
 
 [node name="Sprite2D" type="Sprite2D" parent="item1"]
-position = Vector2(-209, -5.99999)
+position = Vector2(2, -5.00001)
 scale = Vector2(0.271197, 0.271277)
 texture = ExtResource("5_7ft63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="item1"]
-position = Vector2(-210, -5)
+position = Vector2(3, -3)
 shape = SubResource("RectangleShape2D_vcxss")
 
 [node name="item2" type="Area2D" parent="."]
-position = Vector2(666, 602)
+position = Vector2(631, 621)
 script = ExtResource("4_4ftro")
 
 [node name="Sprite2D" type="Sprite2D" parent="item2"]
-position = Vector2(-129.75, -142.75)
+position = Vector2(7, -1.00002)
 scale = Vector2(0.352868, 0.325059)
 texture = ExtResource("5_7ft63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="item2"]
-position = Vector2(-129.75, -145.25)
+position = Vector2(7, -1)
 shape = SubResource("RectangleShape2D_akqks")
+
+[node name="Area_Of_Gravity" type="Area2D" parent="."]
+visible = false
+position = Vector2(1019, -394)
+gravity_space_override = 2
+gravity_point_unit_distance = 412.09
+gravity = 550.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Of_Gravity"]
+position = Vector2(955.75, 771.75)
+shape = SubResource("RectangleShape2D_0lltr")
+
+[node name="Ground_Collision" type="StaticBody2D" parent="."]
+position = Vector2(-611, 863)
+scale = Vector2(38.7612, -5.47798)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision2" type="StaticBody2D" parent="."]
+position = Vector2(85, 812)
+scale = Vector2(22.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision2"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision3" type="StaticBody2D" parent="."]
+position = Vector2(621, 757)
+scale = Vector2(22.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision3"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision4" type="StaticBody2D" parent="."]
+position = Vector2(1158, -89)
+scale = Vector2(34.16, 6.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision4"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision5" type="StaticBody2D" parent="."]
+position = Vector2(1953, -79)
+scale = Vector2(22.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision5"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision6" type="StaticBody2D" parent="."]
+position = Vector2(2258, 431)
+scale = Vector2(11.32, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision6"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision7" type="StaticBody2D" parent="."]
+position = Vector2(2900, 645)
+scale = Vector2(34.12, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision7"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision8" type="StaticBody2D" parent="."]
+position = Vector2(3671, -145)
+scale = Vector2(22.92, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision8"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision9" type="StaticBody2D" parent="."]
+position = Vector2(4237, 918)
+scale = Vector2(33.96, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision9"]
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision10" type="StaticBody2D" parent="."]
+position = Vector2(4744, 212)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision10"]
+shape = SubResource("RectangleShape2D_yl2l3")
 
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]
 [connection signal="body_entered" from="item1" to="item1" method="_on_body_entered"]
