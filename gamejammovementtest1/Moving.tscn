@@ -491,13 +491,14 @@ shape = SubResource("RectangleShape2D_akqks")
 
 [node name="Area_Of_Gravity" type="Area2D" parent="."]
 visible = false
-position = Vector2(1019, -394)
+position = Vector2(12206, -394)
 gravity_space_override = 2
 gravity_point_unit_distance = 412.09
 gravity = 550.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Of_Gravity"]
 position = Vector2(955.75, 771.75)
+scale = Vector2(4.92, 1.04)
 shape = SubResource("RectangleShape2D_0lltr")
 
 [node name="Ground_Collision" type="StaticBody2D" parent="."]
@@ -897,6 +898,15 @@ scale = Vector2(11.76, 5.8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision46"]
 position = Vector2(0.425155, -2.58621)
 scale = Vector2(1.71353, -1.06893)
+shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision47" type="StaticBody2D" parent="."]
+position = Vector2(26575, -90.9999)
+scale = Vector2(11.76, 5.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision47"]
+position = Vector2(0.425155, -2.58621)
+scale = Vector2(5.09788, -1.06893)
 shape = SubResource("RectangleShape2D_a326d")
 
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]
