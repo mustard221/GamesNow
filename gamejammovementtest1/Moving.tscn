@@ -1,7 +1,6 @@
 [gd_scene load_steps=102 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
-[ext_resource type="Script" path="res://GameMusicManager.gd" id="1_f7nqh"]
 [ext_resource type="AudioStream" uid="uid://dmsbkcwgce3v6" path="res://Audio/GG_GameplayMusic.wav" id="2_5am3c"]
 [ext_resource type="Texture2D" uid="uid://dq1rvhf11lls0" path="res://Background/level2.jpg" id="2_c3ph7"]
 [ext_resource type="Texture2D" uid="uid://dgm188857jj4e" path="res://Alien Turn1.png" id="2_x28r7"]
@@ -82,6 +81,7 @@
 [ext_resource type="Texture2D" uid="uid://y0iq16w0rkuy" path="res://SpaceShip/SpaceshipCrashSmoke34.png" id="72_upxn1"]
 [ext_resource type="Texture2D" uid="uid://bbb4mouxajnvc" path="res://SpaceShip/SpaceshipCrashSmoke35.png" id="73_205ks"]
 [ext_resource type="Texture2D" uid="uid://cch1ab2hs8lxp" path="res://SpaceShip/SpaceshipCrashSmoke36.png" id="74_pfafg"]
+[ext_resource type="AudioStream" uid="uid://dwoya0hh88nri" path="res://Audio/pickup.wav" id="78_prtjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jam1"]
 
@@ -545,10 +545,6 @@ size = Vector2(21.4426, 19.5316)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(50, -36)
-script = ExtResource("1_f7nqh")
-
-[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_5am3c")
 
 [node name="Level1" type="TextureRect" parent="."]
 offset_left = -904.0
@@ -683,6 +679,15 @@ libraries = {
 "": SubResource("AnimationLibrary_ujubu")
 }
 autoplay = "Idle"
+
+[node name="PlayerGrab" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("78_prtjf")
+volume_db = -5.0
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(213.5, -366)
+scale = Vector2(0.5, 0.5)
+stream = ExtResource("2_5am3c")
 
 [node name="item1" type="Area2D" parent="." groups=["parts"]]
 position = Vector2(4744, 347)

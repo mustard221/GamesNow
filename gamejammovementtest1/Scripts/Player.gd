@@ -6,6 +6,10 @@ enum GRAV_DIR {
 }
 
 @onready var anim = get_node("AnimationPlayer")
+@onready var player_grab: AudioStreamPlayer2D = $PlayerGrab
+@onready var game_music: AudioStreamPlayer2D = $GameMusic
+
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -16,6 +20,8 @@ var collect = 0
 
 @onready var part_label = %collect
 
+func _ready() -> void:
+	game_music.play()
 
 func _physics_process(delta: float) -> void:	
 	
@@ -82,6 +88,7 @@ func _on_item_2_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
 	part_label.text = "Parts Collected: " + str(collect)
+	player_grab.play()
 	if collect == 5:
 		part_label.text = "Get Back To The Ship!!!"
 		get_parent().get_node("Wall").queue_free()
@@ -91,6 +98,7 @@ func _on_item_1_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
 	part_label.text = "Parts Collected: " + str(collect)
+	player_grab.play()
 	if collect == 5:
 		part_label.text = "Get Back To The Ship!!!"
 		get_parent().get_node("Wall").queue_free()

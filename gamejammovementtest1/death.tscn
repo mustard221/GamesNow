@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://chfdi1yjk6p08"]
+[gd_scene load_steps=9 format=3 uid="uid://chfdi1yjk6p08"]
 
+[ext_resource type="Script" path="res://DeathScreenAudio.gd" id="1_3h6vw"]
 [ext_resource type="Texture2D" uid="uid://cd24ycljgk2cd" path="res://death screen .jpg" id="1_cl7th"]
 [ext_resource type="Script" path="res://Scripts/death_screen.gd" id="2_o857n"]
 [ext_resource type="Texture2D" uid="uid://c4625kljjp6ae" path="res://play again.png" id="3_rhfy1"]
 [ext_resource type="Texture2D" uid="uid://w3gcxr76n47m" path="res://quit_button.png" id="4_wbp4y"]
+[ext_resource type="AudioStream" uid="uid://dfcempn14sg1a" path="res://Audio/death.wav" id="6_2g53w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_imqwf"]
 
@@ -16,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3h6vw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -41,6 +44,10 @@ offset_right = 1379.0
 offset_bottom = 864.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1ln4c")
 icon = ExtResource("4_wbp4y")
+
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2g53w")
+volume_db = 5.0
 
 [connection signal="pressed" from="TextureRect/Node2D/play_again" to="TextureRect/Node2D" method="_on_play_again_pressed"]
 [connection signal="pressed" from="TextureRect/Node2D/quit" to="TextureRect/Node2D" method="_on_quit_pressed"]
