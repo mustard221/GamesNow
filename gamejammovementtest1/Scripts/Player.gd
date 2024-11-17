@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_axis("LEFT", "RIGHT")
 	if direction:
 		if direction > 0:
-			print(velocity.y)
+			#print(velocity.y)
 			#print(velocity.x)
 			$AnimatedSprite2D.scale.x = 0.2
 		else:
@@ -82,8 +82,15 @@ func _on_item_2_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
 	part_label.text = "Parts Collected: " + str(collect)
+	if collect == 5:
+		part_label.text = "Get Back To The Ship!!!"
+		get_parent().get_node("Wall").queue_free()
+		
 
 func _on_item_1_body_entered(body: Node2D) -> void:
 	collect = collect + 1 
 	print(collect)
 	part_label.text = "Parts Collected: " + str(collect)
+	if collect == 5:
+		part_label.text = "Get Back To The Ship!!!"
+		get_parent().get_node("Wall").queue_free()

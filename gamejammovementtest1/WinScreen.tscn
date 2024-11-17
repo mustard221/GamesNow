@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnvc2q4tsm3u0"]
+
+[ext_resource type="Texture2D" uid="uid://tv6oupiltmeh" path="res://YouWinScreen.jpg" id="1_o3b80"]
+[ext_resource type="Script" path="res://WinScreen.gd" id="1_wudol"]
+[ext_resource type="Texture2D" uid="uid://w3gcxr76n47m" path="res://quit_button.png" id="3_4ckqc"]
+[ext_resource type="Texture2D" uid="uid://c4625kljjp6ae" path="res://play again.png" id="3_prk0s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dpck1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5a1h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wudol")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_o3b80")
+
+[node name="PlayAgain" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 749.0
+offset_right = 1368.0
+offset_bottom = 955.0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dpck1")
+text = "
+"
+icon = ExtResource("3_prk0s")
+
+[node name="Quit" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 881.0
+offset_right = 1056.0
+offset_bottom = 989.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h5a1h")
+icon = ExtResource("3_4ckqc")
+
+[connection signal="pressed" from="TextureRect/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="TextureRect/Quit" to="." method="_on_quit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=100 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
 [ext_resource type="Texture2D" uid="uid://dq1rvhf11lls0" path="res://Background/level2.jpg" id="2_c3ph7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="4_yvm62"]
 [ext_resource type="Texture2D" uid="uid://gnj8rj7mkjn" path="res://Background/level5.jpg" id="5_uxat3"]
 [ext_resource type="Texture2D" uid="uid://c1bayyewxp1di" path="res://Jump/Jump2.png" id="5_wv05u"]
+[ext_resource type="Script" path="res://Scripts/SpaceShip.gd" id="6_lgtt2"]
 [ext_resource type="Texture2D" uid="uid://bucp0gtiyw2mk" path="res://Jump/Jump3.png" id="6_sr2nq"]
 [ext_resource type="Script" path="res://Scripts/timer.gd" id="6_umr42"]
 [ext_resource type="Texture2D" uid="uid://c3d3yrvkx2yl1" path="res://Jump/Jump4.png" id="7_1fhxm"]
@@ -79,6 +80,8 @@
 [ext_resource type="Texture2D" uid="uid://y0iq16w0rkuy" path="res://SpaceShip/SpaceshipCrashSmoke34.png" id="72_upxn1"]
 [ext_resource type="Texture2D" uid="uid://bbb4mouxajnvc" path="res://SpaceShip/SpaceshipCrashSmoke35.png" id="73_205ks"]
 [ext_resource type="Texture2D" uid="uid://cch1ab2hs8lxp" path="res://SpaceShip/SpaceshipCrashSmoke36.png" id="74_pfafg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jam1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdke3"]
 font_size = 35
@@ -200,6 +203,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4jf2"]
+
+[sub_resource type="GDScript" id="GDScript_xr7iy"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb3ns"]
+size = Vector2(20, 91)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_451oq"]
 radius = 5.34188
@@ -560,6 +580,15 @@ offset_right = 27151.0
 offset_bottom = 915.0
 texture = ExtResource("5_uxat3")
 
+[node name="WinZone" type="Area2D" parent="."]
+position = Vector2(-706, 692)
+scale = Vector2(8.2933, 4.14698)
+script = ExtResource("6_lgtt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinZone"]
+scale = Vector2(1, 2.76937)
+shape = SubResource("RectangleShape2D_5jam1")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(419, 398)
 zoom = Vector2(0.97, 0.97)
@@ -570,7 +599,7 @@ player = NodePath("../Player")
 script = ExtResource("6_umr42")
 
 [node name="Timer" type="Timer" parent="Camera2D/HUD"]
-wait_time = 100.0
+wait_time = 200.0
 
 [node name="timer" type="Label" parent="Camera2D/HUD"]
 offset_left = 922.0
@@ -606,10 +635,20 @@ visible = false
 position = Vector2(-856, 675)
 texture = ExtResource("38_7crqa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
-position = Vector2(-747, 662)
+[node name="ShipCollision" type="CollisionShape2D" parent="Spaceship"]
+unique_name_in_owner = true
+position = Vector2(-885, 662)
 scale = Vector2(15.2, 14.4)
 shape = SubResource("RectangleShape2D_x4jf2")
+script = SubResource("GDScript_xr7iy")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-681, 647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, 35.5)
+scale = Vector2(8.44, 3.72)
+shape = SubResource("RectangleShape2D_hb3ns")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-427, 732)
@@ -1133,6 +1172,7 @@ position = Vector2(0.425155, -2.58621)
 scale = Vector2(5.09788, -1.06893)
 shape = SubResource("RectangleShape2D_a326d")
 
+[connection signal="body_entered" from="WinZone" to="WinZone" method="_on_body_entered"]
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]
 [connection signal="body_entered" from="item1" to="item1" method="_on_body_entered"]
 [connection signal="body_entered" from="item2" to="Player" method="_on_item_2_body_entered"]
