@@ -1,6 +1,7 @@
-[gd_scene load_steps=102 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=104 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
+[ext_resource type="Texture2D" uid="uid://dk4q2ri2uyj5g" path="res://Background/GG_SpaceBackground.jpg" id="1_fge4f"]
 [ext_resource type="AudioStream" uid="uid://dmsbkcwgce3v6" path="res://Audio/GG_GameplayMusic.wav" id="2_5am3c"]
 [ext_resource type="Texture2D" uid="uid://dq1rvhf11lls0" path="res://Background/level2.jpg" id="2_c3ph7"]
 [ext_resource type="Texture2D" uid="uid://dgm188857jj4e" path="res://Alien Turn1.png" id="2_x28r7"]
@@ -81,6 +82,7 @@
 [ext_resource type="Texture2D" uid="uid://y0iq16w0rkuy" path="res://SpaceShip/SpaceshipCrashSmoke34.png" id="72_upxn1"]
 [ext_resource type="Texture2D" uid="uid://bbb4mouxajnvc" path="res://SpaceShip/SpaceshipCrashSmoke35.png" id="73_205ks"]
 [ext_resource type="Texture2D" uid="uid://cch1ab2hs8lxp" path="res://SpaceShip/SpaceshipCrashSmoke36.png" id="74_pfafg"]
+[ext_resource type="AudioStream" uid="uid://dg1jnwoum083y" path="res://Audio/jump(1).wav" id="78_dyrqm"]
 [ext_resource type="AudioStream" uid="uid://dwoya0hh88nri" path="res://Audio/pickup.wav" id="78_prtjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jam1"]
@@ -546,6 +548,11 @@ size = Vector2(21.4426, 19.5316)
 [node name="Node2D" type="Node2D"]
 position = Vector2(50, -36)
 
+[node name="GgSpaceBackground" type="Sprite2D" parent="."]
+position = Vector2(-1788, 375)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_fge4f")
+
 [node name="Level1" type="TextureRect" parent="."]
 offset_left = -904.0
 offset_top = -163.0
@@ -582,6 +589,11 @@ offset_right = 27151.0
 offset_bottom = 915.0
 texture = ExtResource("5_uxat3")
 
+[node name="GgSpaceBackground2" type="Sprite2D" parent="."]
+position = Vector2(28033, 374)
+scale = Vector2(3.6, 3.6)
+texture = ExtResource("1_fge4f")
+
 [node name="WinZone" type="Area2D" parent="."]
 position = Vector2(-706, 692)
 scale = Vector2(8.2933, 4.14698)
@@ -601,7 +613,7 @@ player = NodePath("../Player")
 script = ExtResource("6_umr42")
 
 [node name="Timer" type="Timer" parent="Camera2D/HUD"]
-wait_time = 200.0
+wait_time = 300.0
 
 [node name="timer" type="Label" parent="Camera2D/HUD"]
 offset_left = 922.0
@@ -648,8 +660,8 @@ script = SubResource("GDScript_xr7iy")
 position = Vector2(-681, 647)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(0, 35.5)
-scale = Vector2(8.44, 3.72)
+position = Vector2(0, 34.7)
+scale = Vector2(8.44, 3.6)
 shape = SubResource("RectangleShape2D_hb3ns")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -688,6 +700,9 @@ volume_db = -5.0
 position = Vector2(213.5, -366)
 scale = Vector2(0.5, 0.5)
 stream = ExtResource("2_5am3c")
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("78_dyrqm")
 
 [node name="item1" type="Area2D" parent="." groups=["parts"]]
 position = Vector2(4744, 347)
@@ -1182,6 +1197,23 @@ scale = Vector2(11.76, 5.8)
 position = Vector2(0.425155, -2.58621)
 scale = Vector2(5.09788, -1.06893)
 shape = SubResource("RectangleShape2D_a326d")
+
+[node name="Ground_Collision48" type="StaticBody2D" parent="."]
+position = Vector2(-1978, 472)
+scale = Vector2(38.7612, -5.47798)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision48"]
+scale = Vector2(-1.01713, -13.5591)
+shape = SubResource("RectangleShape2D_yl2l3")
+
+[node name="Ground_Collision49" type="StaticBody2D" parent="."]
+position = Vector2(27835.2, 583.375)
+scale = Vector2(38.7612, -5.47798)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground_Collision49"]
+position = Vector2(18.0295, 26.173)
+scale = Vector2(-1.01713, -13.5591)
+shape = SubResource("RectangleShape2D_yl2l3")
 
 [connection signal="body_entered" from="WinZone" to="WinZone" method="_on_body_entered"]
 [connection signal="body_entered" from="item1" to="Player" method="_on_item_1_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://co26lvb3me5f1"]
+[gd_scene load_steps=10 format=3 uid="uid://co26lvb3me5f1"]
 
 [ext_resource type="Script" path="res://StartScreen.gd" id="1_g7e3s"]
 [ext_resource type="Texture2D" uid="uid://cdq521g6ukjx2" path="res://title background copy.jpg" id="1_rh1tm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qq6ktt52jaev" path="res://start_button.png" id="3_m5cs7"]
 [ext_resource type="Texture2D" uid="uid://w3gcxr76n47m" path="res://quit_button.png" id="4_ywk5b"]
 [ext_resource type="AudioStream" uid="uid://c1nobw0c46tey" path="res://Audio/GG_StartScreenMusic.wav" id="6_s7qhh"]
+[ext_resource type="AudioStream" uid="uid://bat3g1md5g38r" path="res://Audio/startgame2.wav" id="6_tt1rh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7h75"]
 
@@ -44,6 +45,10 @@ offset_right = 1097.0
 offset_bottom = 854.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vhosd")
 icon = ExtResource("4_ywk5b")
+
+[node name="StartButtonAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("6_tt1rh")
+volume_db = -10.0
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_s7qhh")

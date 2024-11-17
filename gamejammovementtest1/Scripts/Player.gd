@@ -8,6 +8,7 @@ enum GRAV_DIR {
 @onready var anim = get_node("AnimationPlayer")
 @onready var player_grab: AudioStreamPlayer2D = $PlayerGrab
 @onready var game_music: AudioStreamPlayer2D = $GameMusic
+@onready var jump_audio: AudioStreamPlayer2D = $JumpAudio
 
 
 
@@ -74,9 +75,11 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("JUMP") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jump_audio.play()
 		
 	elif Input.is_action_just_pressed("JUMP") and is_on_ceiling():
 		velocity.y = JUMP_VELOCITY*grav
+		jump_audio.play()
 		
 	if velocity.y < 0:
 		anim.play("Jump")
