@@ -1,6 +1,8 @@
-[gd_scene load_steps=100 format=3 uid="uid://bx2jtl4f3npd2"]
+[gd_scene load_steps=102 format=3 uid="uid://bx2jtl4f3npd2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_eoixu"]
+[ext_resource type="Script" path="res://GameMusicManager.gd" id="1_f7nqh"]
+[ext_resource type="AudioStream" uid="uid://dmsbkcwgce3v6" path="res://Audio/GG_GameplayMusic.wav" id="2_5am3c"]
 [ext_resource type="Texture2D" uid="uid://dq1rvhf11lls0" path="res://Background/level2.jpg" id="2_c3ph7"]
 [ext_resource type="Texture2D" uid="uid://dgm188857jj4e" path="res://Alien Turn1.png" id="2_x28r7"]
 [ext_resource type="Texture2D" uid="uid://0hqe6neeach4" path="res://Background/level3.jpg" id="3_rgmn0"]
@@ -543,6 +545,10 @@ size = Vector2(21.4426, 19.5316)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(50, -36)
+script = ExtResource("1_f7nqh")
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5am3c")
 
 [node name="Level1" type="TextureRect" parent="."]
 offset_left = -904.0

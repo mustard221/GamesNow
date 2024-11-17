@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnvc2q4tsm3u0"]
+[gd_scene load_steps=8 format=3 uid="uid://dnvc2q4tsm3u0"]
 
 [ext_resource type="Texture2D" uid="uid://tv6oupiltmeh" path="res://YouWinScreen.jpg" id="1_o3b80"]
 [ext_resource type="Script" path="res://WinScreen.gd" id="1_wudol"]
 [ext_resource type="Texture2D" uid="uid://w3gcxr76n47m" path="res://quit_button.png" id="3_4ckqc"]
 [ext_resource type="Texture2D" uid="uid://c4625kljjp6ae" path="res://play again.png" id="3_prk0s"]
+[ext_resource type="AudioStream" uid="uid://c76ifev72lm7" path="res://Audio/GG_WinMusic.wav" id="5_ora85"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dpck1"]
 
@@ -44,6 +45,9 @@ offset_right = 1056.0
 offset_bottom = 989.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_h5a1h")
 icon = ExtResource("3_4ckqc")
+
+[node name="WinScreenAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ora85")
 
 [connection signal="pressed" from="TextureRect/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="TextureRect/Quit" to="." method="_on_quit_pressed"]
